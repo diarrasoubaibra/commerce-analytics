@@ -1,4 +1,3 @@
-
 import os.path
 from datetime import datetime
 
@@ -10,9 +9,8 @@ import pandas as pd
 import sqlite3
 import io
 
-
 SCOPES = ['https://www.googleapis.com/auth/drive']
-SERVICE_ACCOUNT_FILE = "massive-glyph-323908-5809907c52ef.json"
+SERVICE_ACCOUNT_FILE = "tuto-dah-f337769981af.json"
 DATA_DIR = "data"
 RAW_DATA_DIR = os.path.join(DATA_DIR, "raw_data")
 
@@ -99,7 +97,6 @@ def extract_orders(date: datetime, db_path: str = "ecommerce_orders_may2024.db",
         df = pd.read_sql_query(f'SELECT * FROM {table_name} where order_date="{date_str}" ', conn)
     finally:
         conn.close()
-    
     if df.shape[0]> 0:
         os.makedirs(f"{RAW_DATA_DIR}/orders/{date.year}/{date.month}", exist_ok=True)
         local_path = os.path.join(f"{RAW_DATA_DIR}/orders/{date.year}/{date.month}", f"{date.day}.csv")
@@ -108,5 +105,6 @@ def extract_orders(date: datetime, db_path: str = "ecommerce_orders_may2024.db",
 
 
 if __name__=="__main__":
-    extract_products(datetime.strptime("2024-05-10", "%Y-%m-%d"))
-    #extract_orders(datetime.strptime("2024-05-03", "%Y-%m-%d"))
+    extract_clients(datetime.strptime("2024-05-02", "%Y-%m-%d"))
+    extract_products(datetime.strptime("2024-05-07", "%Y-%m-%d"))
+    extract_orders(datetime.strptime("2024-05-07", "%Y-%m-%d"))

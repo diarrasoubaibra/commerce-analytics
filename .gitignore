@@ -5,8 +5,6 @@ airflow.db
 data/
 simple_auth_manager_passwords.json.generated
 logs/
-analysienv/
-.env
-env/
-analysisenv/
-venv/
+dahvenv/
+inlaid-contact-470914-i4-280664938a7e.json
+tuto-dah-f337769981af.json
